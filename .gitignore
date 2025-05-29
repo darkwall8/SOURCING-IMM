@@ -25,13 +25,13 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-
+src/test.md
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
-/.nb-gradle/
+/.nb-gradle
 
 ### VS Code ###
 .vscode/

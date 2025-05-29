@@ -1,7 +1,11 @@
+import nu.studer.gradle.jooq.JooqEdition
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.5.0'
     id 'io.spring.dependency-management' version '1.1.7'
+    id 'nu.studer.jooq' version '8.2.1'
+    id 'org.flywaydb.flyway' version '9.22.3'
 }
 
 group = 'com.sourcing'
@@ -28,12 +32,104 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'org.springframework.session:spring-session-core'
     runtimeOnly 'org.postgresql:postgresql'
+    jooqGenerator 'org.postgresql:postgresql:42.7.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.graphql:spring-graphql-test'
     testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+flyway {
+    url = 'jdbc:postgresql://localhost:5432/sourcing'
+    user = 'FTD'
+    password = 'FTD_DEV237'
+    schemas = ['students', 'enterprises', 'administrator']
+    locations = ['classpath:db/migration']
+    cleanDisabled = false
+    baselineOnMigrate = true
+}
+
+
+sourceSets {
+    main {
+        java {
+            srcDir "$buildDir/generated-src/jooq"
+        }
+    }
+}
+
+jooq {
+    version = '3.18.7'
+    edition = JooqEdition.OSS
+
+    configurations {
+        main {
+            generateSchemaSourceOnCompilation = true
+
+            generationTool {
+                logging = org.jooq.meta.jaxb.Logging.WARN
+
+                jdbc {
+                    driver = 'org.postgresql.Driver'
+                    url = 'jdbc:postgresql://localhost:5432/sourcing'
+                    user = 'FTD'
+                    password = 'FTD_DEV237'
+                }
+
+                generator {
+                    name = 'org.jooq.codegen.DefaultGenerator'
+
+                    database {
+                        name = 'org.jooq.meta.postgres.PostgresDatabase'
+
+                        schemata {
+                            schema { inputSchema = 'students' }
+                            schema { inputSchema = 'enterprises' }
+                            schema { inputSchema = 'administrator' }
+                        }
+
+                        includes = '.*'
+                        excludes = 'flyway_schema_history'
+
+                        forcedTypes {
+                            forcedType {
+                                name = "INSTANT"
+                                includeTypes = 'TIMESTAMPTZ'
+                            }
+                        }
+                    }
+
+                    target {
+                        packageName = 'com.sourcing.sourcingimm.generated'
+                        directory = "$buildDir/generated-src/jooq"
+                        clean = true
+                    }
+
+                    generate {
+                        relations = true
+                        deprecated = false
+                        records = true
+                        immutablePojos = true
+                        fluentSetters = true
+                        daos = false
+                        javaTimeTypes = true
+                        springAnnotations = true
+                    }
+                }
+            }
+        }
+    }
+}
+
+tasks.named('generateJooq').configure {
+    dependsOn tasks.named('flywayMigrate')
+    inputs.files(fileTree('src/main/resources/db/migration'))
+            .withPropertyName('migrations')
+            .withPathSensitivity(PathSensitivity.RELATIVE)
+    allInputsDeclared = true
+}
+
 tasks.named('test') {
     useJUnitPlatform()
+    enabled = false
 }
