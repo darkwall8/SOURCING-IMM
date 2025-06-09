@@ -1,11 +1,10 @@
-import nu.studer.gradle.jooq.JooqEdition
-
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.5.0'
     id 'io.spring.dependency-management' version '1.1.7'
     id 'nu.studer.jooq' version '8.2.1'
     id 'org.flywaydb.flyway' version '9.22.3'
+    id 'io.freefair.lombok' version '8.4'
 }
 
 group = 'com.sourcing'
@@ -32,24 +31,59 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'org.springframework.session:spring-session-core'
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+    implementation 'jakarta.annotation:jakarta.annotation-api:2.1.1'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
     runtimeOnly 'org.postgresql:postgresql'
     jooqGenerator 'org.postgresql:postgresql:42.7.2'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.graphql:spring-graphql-test'
     testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+tasks.named('flywayMigrate').configure {
+    dependsOn tasks.named('processResources')
+}
+
+tasks.named('flywayInfo').configure {
+    dependsOn tasks.named('processResources')
+}
+
+tasks.named('flywayBaseline').configure {
+    dependsOn tasks.named('processResources')
+}
+
 flyway {
     url = 'jdbc:postgresql://localhost:5432/sourcing'
     user = 'FTD'
     password = 'FTD_DEV237'
-    schemas = ['students', 'enterprises', 'administrator']
+    schemas = ['public']
     locations = ['classpath:db/migration']
     cleanDisabled = false
     baselineOnMigrate = true
-}
+    baselineVersion = 1
 
+    mixed = false
+    validateOnMigrate = true
+    outOfOrder = false
+
+    defaultSchema = 'public'
+}
 
 sourceSets {
     main {
@@ -61,7 +95,7 @@ sourceSets {
 
 jooq {
     version = '3.18.7'
-    edition = JooqEdition.OSS
+    edition = nu.studer.gradle.jooq.JooqEdition.OSS
 
     configurations {
         main {
@@ -84,9 +118,10 @@ jooq {
                         name = 'org.jooq.meta.postgres.PostgresDatabase'
 
                         schemata {
-                            schema { inputSchema = 'students' }
-                            schema { inputSchema = 'enterprises' }
-                            schema { inputSchema = 'administrator' }
+                            schema { inputSchema = 'user_management' }
+                            schema { inputSchema = 'academic' }
+                            schema { inputSchema = 'recruitment' }
+                            schema { inputSchema = 'system' }
                         }
 
                         includes = '.*'
@@ -96,6 +131,10 @@ jooq {
                             forcedType {
                                 name = "INSTANT"
                                 includeTypes = 'TIMESTAMPTZ'
+                            }
+                            forcedType {
+                                name = "INSTANT"
+                                includeTypes = 'TIMESTAMP'
                             }
                         }
                     }
@@ -115,6 +154,12 @@ jooq {
                         daos = false
                         javaTimeTypes = true
                         springAnnotations = true
+                        generatedAnnotation = true
+                        generatedAnnotationType = 'DETECT_FROM_JDK'
+                        nullableAnnotation = true
+                        nullableAnnotationType = 'jakarta.annotation.Nullable'
+                        nonnullAnnotation = true
+                        nonnullAnnotationType = 'jakarta.annotation.Nonnull'
                     }
                 }
             }

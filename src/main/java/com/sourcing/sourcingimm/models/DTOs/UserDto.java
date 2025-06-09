@@ -1,25 +1,41 @@
 package com.sourcing.sourcingimm.models.DTOs;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
+import java.util.UUID;
 
-public record UserDto(
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserDto {
 
-        @NotBlank(message = "Name is required")
-        String name,
+    private UUID id;
 
-        @NotBlank(message = "School level is required")
-        String schoolLevel,
+    @NotBlank(message = "Name is required")
+    private String name;
 
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern =  "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-        Instant createAt,
+    @NotBlank(message = "School level is required")
+    private String schoolLevel;
 
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-        Instant updatedAt
-) {
-        public static UserDto create(String email, String name) {
-                return new UserDto(email, name, null, null);
-        }
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email must be valid")
+    private String email;
+
+    @Column(name = "created_at", nullable = false)
+    @CreationTimestamp
+    private Instant createAt;
+
+    @Column(name = "updated_at", nullable = false)
+    @UpdateTimestamp
+    private Instant updatedAt;
+
+
 }

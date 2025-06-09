@@ -1,0 +1,40 @@
+
+
+-- =========================================
+-- NOTES D'UTILISATION
+-- =========================================
+
+/*
+STRUCTURE DES SCHÉMAS :
+- user_management : Gestion des utilisateurs, profils, rôles
+- academic : Compétences, fichiers étudiants, formations
+- recruitment : Offres, candidatures, processus de recrutement
+- system : Tokens, logs, feedbacks, administration
+
+TYPES PERSONNALISÉS :
+- Tous les énums sont préfixés par le schéma
+- Types réutilisables et extensibles
+- Validation au niveau base de données
+
+FONCTIONNALITÉS AVANCÉES :
+- Triggers automatiques pour updated_at
+- Compteur de candidatures automatique
+- Système de scoring des candidatures
+- Traçabilité complète des actions
+- Gestion des fichiers avec métadonnées
+
+COMMANDES FLYWAY :
+flyway migrate -locations=filesystem:db/migration
+flyway info
+flyway validate
+
+ORDRE D'EXÉCUTION :
+V1 : Schémas et types
+V2 : Tables utilisateurs
+V3 : Tables académiques
+V4 : Tables recrutement
+V5 : Tables système
+V6 : Index de performance
+V7 : Triggers et fonctions
+V8 : Données initiales
+*/

@@ -1,4 +1,4 @@
 package com.sourcing.sourcingimm.models;
 
-public class User {
+public class StudentAdditionnalInfoModel {
 }
