@@ -1,4 +1,4 @@
 package com.sourcing.sourcingimm.models.mappers;
 
-public class CompanyAdditionnalInfoMapper {
+public class CompanyAdditionalInfoMapper {
 }

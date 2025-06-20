@@ -37,5 +37,4 @@ public class UserDto {
     @UpdateTimestamp
     private Instant updatedAt;
 
-
 }

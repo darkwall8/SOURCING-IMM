@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper(
         componentModel = "spring",
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
-        uses = {StudentAdditionalInfoMapper.class, CompanyAdditionnalInfoMapper.class}
+        uses = {StudentAdditionalInfoMapper.class, CompanyAdditionalInfoMapper.class}
 )
 public interface UserMappers {
 
