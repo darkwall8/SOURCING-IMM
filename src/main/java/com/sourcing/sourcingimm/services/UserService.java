@@ -3,6 +3,7 @@ package com.sourcing.sourcingimm.services;
 import com.sourcing.sourcingimm.exception.DuplicateResourceException;
 import com.sourcing.sourcingimm.models.UserModel;
 import com.sourcing.sourcingimm.models.entities.UserEntity;
+import com.sourcing.sourcingimm.models.mappers.CompanyAdditionalInfoMapper;
 import com.sourcing.sourcingimm.models.mappers.UserMappers;
 import com.sourcing.sourcingimm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +27,13 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private CompanyAdditionalInfoMapper mapper;
+
     @Transactional(readOnly = true)
     public List<UserModel> getAllUsers() {
         List<UserEntity> entities = userRepository.findAll();
         return userMappers.entitiesToModels(entities);
-    }
-
-    @Transactional(readOnly = true)
-    public UserModel getUserById(Integer id) {
-        UserEntity entity = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
-        return userMappers.entityToModel(entity);
     }
 
     @Transactional(readOnly = true)

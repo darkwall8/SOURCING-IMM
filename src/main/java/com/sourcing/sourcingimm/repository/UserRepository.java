@@ -18,7 +18,6 @@ public class UserRepository {
 
     public List<UserEntity> findAll() {
         return dsl.select(
-                USER.ID,
                 USER.NAME,
                 USER.EMAIL,
                 USER.PROFILE_ID,
@@ -37,9 +36,8 @@ public class UserRepository {
                 .fetchInto(UserEntity.class);
     }
 
-    public Optional<UserEntity> findById(Integer id) {
+    public Optional<UserEntity> findById(String email) {
         var record = dsl.select(
-                USER.ID,
                 USER.NAME,
                 USER.EMAIL,
                 USER.PASSWORD,
@@ -56,7 +54,7 @@ public class UserRepository {
                 .from(USER)
                 .leftJoin(PROFILE).on(USER.PROFILE_ID.eq(PROFILE.ID))
                 .leftJoin(ROLE).on(USER.ROLE_ID.eq(ROLE.ID))
-                .where(USER.ID.eq(id))
+                .where(USER.EMAIL.eq(email))
                 .fetchOne();
 
         return record != null ? Optional.of(record.into(UserEntity.class)) : Optional.empty();
@@ -93,10 +91,10 @@ public class UserRepository {
                     .set(USER.ROLE_ID, user.getRoleId())
                     .set(USER.HAS_PREMIUM, user.getHasPremium())
                     .set(USER.IS_ACTIVATED, user.getIsActivated())
-                    .where(USER.ID.eq(user.getId()))
+                    .where(USER.EMAIL.eq(user.getEmail()))
                     .execute();
 
-            return findById(user.getId()).orElse(user);
+            return findByEmail(user.getEmail()).orElse(user);
         }
     }
 

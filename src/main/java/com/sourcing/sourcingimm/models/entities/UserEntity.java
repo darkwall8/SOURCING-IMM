@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -15,8 +16,8 @@ public class UserEntity {
         private String name;
         private String email;
         private String password;
-        private Integer profileId;
-        private Integer roleId;
+        private UUID profileId;
+        private UUID roleId;
         private Boolean hasPremium;
         private Boolean isActivated;
         private LocalDateTime lastLogin;
@@ -29,3 +30,5 @@ public class UserEntity {
 //        private StudentAdditionalInfoEntity studentInfo;
 //        private CompanyAdditionalInfoEntity companyInfo;
 }
+
+// TODO: remove id on user and just stay with email

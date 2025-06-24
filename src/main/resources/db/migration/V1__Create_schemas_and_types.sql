@@ -23,3 +23,4 @@ CREATE TYPE recruitment.candidature_status_enum AS ENUM ('PENDING', 'ACCEPTED', 
 CREATE TYPE recruitment.offer_type_enum AS ENUM ('INTERNSHIP', 'FULL_TIME', 'PART_TIME', 'CONTRACT', 'FREELANCE');
 CREATE TYPE academic.skill_level_enum AS ENUM ('BEGINNER', 'INTERMEDIATE', 'ADVANCED', 'EXPERT');
 CREATE TYPE system.token_type_enum AS ENUM ('ACTIVATION', 'RESET_PASSWORD', 'REFRESH');
+
