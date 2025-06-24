@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -15,9 +16,9 @@ import java.util.Date;
 @Builder
 public class CandidacyModel {
 
-    private Integer id;
-    private Integer userId;
-    private Integer offerId;
+    private UUID id;
+    private String userEmail;
+    private UUID offerId;
     private CandidacyStatus status;
     private String coverLetter;
     private Integer resumeFileId;
@@ -29,7 +30,7 @@ public class CandidacyModel {
     private Integer score;
     private Timestamp appliedAt;
     private Timestamp reviewedAt;
-    private Integer reviewerId;
+    private String reviewedByEmail;
     private Timestamp responseDate;
 
 

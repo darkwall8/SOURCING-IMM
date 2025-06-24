@@ -36,29 +36,29 @@ public class UserRepository {
                 .fetchInto(UserEntity.class);
     }
 
-    public Optional<UserEntity> findById(String email) {
-        var record = dsl.select(
-                USER.NAME,
-                USER.EMAIL,
-                USER.PASSWORD,
-                USER.PROFILE_ID,
-                USER.ROLE_ID,
-                USER.HAS_PREMIUM,
-                USER.IS_ACTIVATED,
-                USER.LAST_LOGIN,
-                USER.CREATED_AT,
-                USER.UPDATED_AT,
-                PROFILE.NAME.as("profile_name"),
-                ROLE.NAME.as("role_name")
-        )
-                .from(USER)
-                .leftJoin(PROFILE).on(USER.PROFILE_ID.eq(PROFILE.ID))
-                .leftJoin(ROLE).on(USER.ROLE_ID.eq(ROLE.ID))
-                .where(USER.EMAIL.eq(email))
-                .fetchOne();
-
-        return record != null ? Optional.of(record.into(UserEntity.class)) : Optional.empty();
-    }
+//    public Optional<UserEntity> findById(String email) {
+//        var record = dsl.select(
+//                USER.NAME,
+//                USER.EMAIL,
+//                USER.PASSWORD,
+//                USER.PROFILE_ID,
+//                USER.ROLE_ID,
+//                USER.HAS_PREMIUM,
+//                USER.IS_ACTIVATED,
+//                USER.LAST_LOGIN,
+//                USER.CREATED_AT,
+//                USER.UPDATED_AT,
+//                PROFILE.NAME.as("profile_name"),
+//                ROLE.NAME.as("role_name")
+//        )
+//                .from(USER)
+//                .leftJoin(PROFILE).on(USER.PROFILE_ID.eq(PROFILE.ID))
+//                .leftJoin(ROLE).on(USER.ROLE_ID.eq(ROLE.ID))
+//                .where(USER.EMAIL.eq(email))
+//                .fetchOne();
+//
+//        return record != null ? Optional.of(record.into(UserEntity.class)) : Optional.empty();
+//    }
 
     public Optional<UserEntity> findByEmail(String email) {
         var record = dsl.select()

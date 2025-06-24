@@ -7,13 +7,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class CompanyAdditionalInfoModel {
 //TODO: add constraint related  to siret and others
-    private Integer id;
+    private UUID id;
+
+    private String userEmail;
 
     @NotBlank(message = "The company name is required")
     @Size(max = 255, message = "The company name can't containt more than 255 characters")

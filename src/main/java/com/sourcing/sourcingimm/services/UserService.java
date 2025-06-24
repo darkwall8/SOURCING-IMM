@@ -3,7 +3,6 @@ package com.sourcing.sourcingimm.services;
 import com.sourcing.sourcingimm.exception.DuplicateResourceException;
 import com.sourcing.sourcingimm.models.UserModel;
 import com.sourcing.sourcingimm.models.entities.UserEntity;
-import com.sourcing.sourcingimm.models.mappers.CompanyAdditionalInfoMapper;
 import com.sourcing.sourcingimm.models.mappers.UserMappers;
 import com.sourcing.sourcingimm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +26,6 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private CompanyAdditionalInfoMapper mapper;
 
     @Transactional(readOnly = true)
     public List<UserModel> getAllUsers() {

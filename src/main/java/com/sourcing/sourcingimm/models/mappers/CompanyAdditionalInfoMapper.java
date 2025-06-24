@@ -1,6 +1,6 @@
 package com.sourcing.sourcingimm.models.mappers;
 
-import com.sourcing.sourcingimm.generated.user_management.tables.CompanyAdditionalInformation;
+
 import com.sourcing.sourcingimm.models.CompanyAdditionalInfoModel;
 import com.sourcing.sourcingimm.models.entities.CompanyAdditionalInformationEntity;
 import org.mapstruct.Mapper;

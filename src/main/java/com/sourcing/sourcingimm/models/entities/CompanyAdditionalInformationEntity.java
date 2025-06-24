@@ -6,13 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class CompanyAdditionalInformationEntity {
-    private Integer id;
+    private UUID id;
     private String userEmail;
     private String companyName;
     private String siret;
@@ -26,4 +27,3 @@ public class CompanyAdditionalInformationEntity {
     private Timestamp createdAt;
     private Timestamp updatedAt;
 }
-//TODO: replace userId by userEmail
