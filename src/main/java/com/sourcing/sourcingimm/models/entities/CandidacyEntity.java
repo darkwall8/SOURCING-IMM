@@ -1,6 +1,6 @@
 package com.sourcing.sourcingimm.models.entities;
 
-import com.sourcing.sourcingimm.models.DTOs.CandidacyStatus;
+import com.sourcing.sourcingimm.utils.enumerations.CandidacyStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,18 +8,19 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class CandidacyEntity {
-    private Integer id;
-    private Integer userId;
-    private Integer offerId;
+    private UUID id;
+    private String userEmail;
+    private UUID offerId;
     private CandidacyStatus status;
     private String coverLetter;
-    private Integer resumeFileId;
+    private UUID resumeFileId;
     private Integer[] additionalDocuments = new Integer[]{};
     private String motivation;
     private Integer expectedSalary;
@@ -28,6 +29,6 @@ public class CandidacyEntity {
     private Integer score;
     private Timestamp appliedAt;
     private Timestamp reviewedAt;
-    private Integer reviewerId;
+    private String reviewedByEmail;
     private Timestamp responseDate;
 }

@@ -1,4 +1,4 @@
-package com.sourcing.sourcingimm.exception;
+package com.sourcing.sourcingimm.utils.exception;
 
 public class DuplicateResourceException extends RuntimeException {
 

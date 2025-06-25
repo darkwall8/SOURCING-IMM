@@ -1,4 +1,4 @@
-package com.sourcing.sourcingimm.models.DTOs;
+package com.sourcing.sourcingimm.utils.enumerations;
 
 public enum CandidacyStatus {
     PENDING,

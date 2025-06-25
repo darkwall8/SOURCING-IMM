@@ -70,11 +70,10 @@ public class UserRepository {
     }
 
     public UserEntity save(UserEntity user) {
-        if (user.getId() == null) {
+        if (user.getEmail() == null) {
             var record = dsl.insertInto(USER)
                     .set(USER.NAME, user.getName())
                     .set(USER.EMAIL, user.getEmail())
-                    .set(USER.PASSWORD, user.getPassword())
                     .set(USER.PROFILE_ID, user.getProfileId())
                     .set(USER.ROLE_ID, user.getRoleId())
                     .set(USER.HAS_PREMIUM, user.getHasPremium())

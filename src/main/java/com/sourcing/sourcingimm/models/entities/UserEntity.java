@@ -12,10 +12,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class UserEntity {
-        private Integer id;
         private String name;
         private String email;
-        private String password;
         private UUID profileId;
         private UUID roleId;
         private Boolean hasPremium;
@@ -24,11 +22,8 @@ public class UserEntity {
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
 
-        // Entités liées
-//        private ProfileEntity profile;
-//        private RoleEntity role;
-//        private StudentAdditionalInfoEntity studentInfo;
-//        private CompanyAdditionalInfoEntity companyInfo;
+        private ProfileEntity profile;
+        private RoleEntity role;
+        private StudentAdditionalInformationEntity studentInfo;
+        private CompanyAdditionalInformationEntity companyInfo;
 }
-
-// TODO: remove id on user and just stay with email

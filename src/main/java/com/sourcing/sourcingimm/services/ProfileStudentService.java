@@ -1,6 +1,6 @@
 package com.sourcing.sourcingimm.services;
 
-import com.sourcing.sourcingimm.exception.DuplicateResourceException;
+import com.sourcing.sourcingimm.utils.exception.DuplicateResourceException;
 import com.sourcing.sourcingimm.models.StudentAdditionalInfoModel;
 import com.sourcing.sourcingimm.models.entities.StudentAdditionalInformationEntity;
 import com.sourcing.sourcingimm.models.mappers.StudentAdditionalInfoMapper;

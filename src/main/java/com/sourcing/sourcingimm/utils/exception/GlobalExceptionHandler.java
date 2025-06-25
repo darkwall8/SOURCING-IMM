@@ -1,4 +1,4 @@
-package com.sourcing.sourcingimm.exception;
+package com.sourcing.sourcingimm.utils.exception;
 
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;

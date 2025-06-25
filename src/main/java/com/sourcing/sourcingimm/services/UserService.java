@@ -1,6 +1,6 @@
 package com.sourcing.sourcingimm.services;
 
-import com.sourcing.sourcingimm.exception.DuplicateResourceException;
+import com.sourcing.sourcingimm.utils.exception.DuplicateResourceException;
 import com.sourcing.sourcingimm.models.UserModel;
 import com.sourcing.sourcingimm.models.entities.UserEntity;
 import com.sourcing.sourcingimm.models.mappers.UserMappers;
@@ -48,9 +48,6 @@ public class UserService {
 
         UserEntity entity = userMappers.modelToEntity(user);
 
-        if(entity.getPassword() != null) {
-            entity.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
 
         entity.setHasPremium(false);
         entity.setIsActivated(false);
@@ -65,9 +62,6 @@ public class UserService {
 
         userMappers.updateEntityFromModel(userModel, existingEntity);
 
-        if (userModel.getPassword() != null && !userModel.getPassword().isEmpty()) {
-            existingEntity.setPassword(passwordEncoder.encode(userModel.getPassword()));
-        }
 
         UserEntity savedEntity = userRepository.save(existingEntity);
         return userMappers.entityToModel(savedEntity);

@@ -10,7 +10,6 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 )
 public interface CandidacyMappers {
 
-    @Mapping(target = "companyName", source = "company.name")
-    @Mapping(target = "")
+
 
 }

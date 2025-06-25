@@ -1,6 +1,6 @@
 package com.sourcing.sourcingimm.models.entities;
 
-import com.sourcing.sourcingimm.models.DTOs.AcademicSkillLevel;
+import com.sourcing.sourcingimm.utils.enumerations.AcademicSkillLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

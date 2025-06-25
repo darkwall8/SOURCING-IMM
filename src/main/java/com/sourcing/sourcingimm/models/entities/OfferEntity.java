@@ -1,6 +1,6 @@
 package com.sourcing.sourcingimm.models.entities;
 
-import com.sourcing.sourcingimm.models.DTOs.OfferStatus;
+import com.sourcing.sourcingimm.utils.enumerations.OfferStatus;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

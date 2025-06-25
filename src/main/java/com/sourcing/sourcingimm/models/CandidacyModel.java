@@ -1,6 +1,6 @@
 package com.sourcing.sourcingimm.models;
 
-import com.sourcing.sourcingimm.models.DTOs.CandidacyStatus;
+import com.sourcing.sourcingimm.utils.enumerations.CandidacyStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +21,7 @@ public class CandidacyModel {
     private UUID offerId;
     private CandidacyStatus status;
     private String coverLetter;
-    private Integer resumeFileId;
+    private UUID resumeFileId;
     private Integer[] additionalDocuments = new Integer[]{};
     private String motivation;
     private Integer expectedSalary;

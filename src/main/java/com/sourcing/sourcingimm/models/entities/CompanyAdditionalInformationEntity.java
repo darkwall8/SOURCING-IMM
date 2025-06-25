@@ -16,14 +16,24 @@ public class CompanyAdditionalInformationEntity {
     private UUID id;
     private String userEmail;
     private String companyName;
-    private String siret;
+    /**
+     * secteur d'activité
+     */
     private String industry;
     private String companySize;
     private String website;
     private String description;
     private String address;
-    private String contactPerson;
     private String contactPhone;
+    private String companyCorporate;
+    private String companyRCCM;
+    private String companyNIU;
+    private String companyCommercialRegister;
+    private String companyLegalStatus;
+    private String companyTaxConformityCertificate;
+    private String companyStaticDeclarationNumber;
+    private Integer companyInternshipDuration;
+    private Boolean companyHasInternOpportunity;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 }

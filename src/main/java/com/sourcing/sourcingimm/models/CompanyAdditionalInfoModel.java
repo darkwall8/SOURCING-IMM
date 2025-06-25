@@ -22,27 +22,22 @@ public class CompanyAdditionalInfoModel {
     @Size(max = 255, message = "The company name can't containt more than 255 characters")
     private String companyName;
 
-    @NotBlank(message = "This information is required")
-    private String siret;
 
-    @NotBlank(message = "This information is required")
     private String industry;
-
-    @NotBlank(message = "This information is required")
     private String companySize;
-
     private String website;
     private String description;
-
-    @NotBlank(message = "This information is required")
     private String address;
-
-    @NotBlank(message = "This information is required")
-    private String contactPerson;
-
-    @NotBlank(message = "This information is required")
     private String contactPhone;
-
+    private String companyCorporate;
+    private String companyRCCM;
+    private String companyNIU;
+    private String companyCommercialRegister;
+    private String companyLegalStatus;
+    private String companyTaxConformityCertificate;
+    private String companyStaticDeclarationNumber;
+    private Integer companyInternshipDuration;
+    private Boolean companyHasInternOpportunity;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 
