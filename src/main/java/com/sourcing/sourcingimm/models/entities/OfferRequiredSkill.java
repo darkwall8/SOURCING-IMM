@@ -17,7 +17,12 @@ public class OfferRequiredSkill {
     private Integer offerId;
     private Integer skillId;
     private AcademicSkillLevel requiredLevel;
+
+    @Builder.Default
     private boolean isMandatory = true;
+
+    @Builder.Default
     private Integer weight = 1;
+
     private Timestamp createdAt;
 }

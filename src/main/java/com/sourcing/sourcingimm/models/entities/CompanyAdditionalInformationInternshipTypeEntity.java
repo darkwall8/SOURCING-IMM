@@ -1,22 +1,18 @@
 package com.sourcing.sourcingimm.models.entities;
 
-import com.sourcing.sourcingimm.utils.enumerations.ProfileType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
 import java.util.UUID;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class ProfileEntity {
+public class CompanyAdditionalInformationInternshipTypeEntity {
 
-    private UUID id;
-
-    private String name;
-    private Timestamp createdAt;
+    private UUID companyAdditionalInformationId;
+    private String internshipType;
 }

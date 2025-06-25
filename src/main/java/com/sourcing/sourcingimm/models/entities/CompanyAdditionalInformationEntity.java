@@ -19,7 +19,7 @@ public class CompanyAdditionalInformationEntity {
     /**
      * secteur d'activité
      */
-    private String industry;
+    private UUID companyActivitySectorId;
     private String companySize;
     private String website;
     private String description;
@@ -36,4 +36,6 @@ public class CompanyAdditionalInformationEntity {
     private Boolean companyHasInternOpportunity;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+
+
 }

@@ -18,8 +18,6 @@ public interface UserMappers {
 
     @Mapping(target = "profileName", source = "profile.name")
     @Mapping(target = "roleName", source = "role.name")
-    @Mapping(target = "studentInfo", source = "studentInfo")
-    @Mapping(target = "companyInfo", source = "companyInfo")
     UserModel entityToModel(UserEntity entity);
 
     @Mapping(target = "profile", ignore = true)
@@ -32,6 +30,11 @@ public interface UserMappers {
 
     List<UserModel> entitiesToModels(List<UserEntity> entities);
 
+    @Mapping(target = "profile", ignore = true)
+    @Mapping(target = "role", ignore = true)
+    @Mapping(target = "studentInfo", ignore = true)
+    @Mapping(target = "companyInfo", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
     void updateEntityFromModel(UserModel model, @MappingTarget UserEntity entity);
-
 }

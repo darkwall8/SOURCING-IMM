@@ -1,6 +1,5 @@
 package com.sourcing.sourcingimm.models.mappers;
 
-
 import com.sourcing.sourcingimm.models.CompanyAdditionalInfoModel;
 import com.sourcing.sourcingimm.models.entities.CompanyAdditionalInformationEntity;
 import org.mapstruct.Mapper;
@@ -18,8 +17,8 @@ public interface CompanyAdditionalInfoMapper {
 
     CompanyAdditionalInfoModel entityToModel(CompanyAdditionalInformationEntity entity);
 
-    @Mapping(target = "createAt", ignore = true)
-    @Mapping(target = "updateAt", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
     CompanyAdditionalInformationEntity modelToEntity(CompanyAdditionalInfoModel model);
 
     List<CompanyAdditionalInfoModel> entitiesToModels(List<CompanyAdditionalInformationEntity> entities);
@@ -27,7 +26,7 @@ public interface CompanyAdditionalInfoMapper {
     List<CompanyAdditionalInformationEntity> modelsToEntities(List<CompanyAdditionalInfoModel> models);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target =  "createAd", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     void updateEntityFromModel(CompanyAdditionalInfoModel model, @MappingTarget CompanyAdditionalInformationEntity entity);
 }

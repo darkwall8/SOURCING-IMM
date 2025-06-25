@@ -16,7 +16,6 @@ public class RoleEntity {
 
     private UUID id;
     private UUID profileId;
-    private String description;
-    private String permissions;
+    private String name;
     private Timestamp createdAt;
 }

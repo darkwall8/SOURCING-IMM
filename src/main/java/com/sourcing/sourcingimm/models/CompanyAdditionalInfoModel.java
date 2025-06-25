@@ -23,7 +23,7 @@ public class CompanyAdditionalInfoModel {
     private String companyName;
 
 
-    private String industry;
+    private String companyActivitySectorId;
     private String companySize;
     private String website;
     private String description;

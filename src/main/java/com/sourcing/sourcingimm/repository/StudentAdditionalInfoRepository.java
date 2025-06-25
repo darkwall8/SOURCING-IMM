@@ -27,32 +27,33 @@ public class StudentAdditionalInfoRepository {
     public StudentAdditionalInformationEntity save(StudentAdditionalInformationEntity entity) {
         if (entity.getId() == null) {
             var record = dsl.insertInto(STUDENT_ADDITIONAL_INFORMATION)
-                    .set(STUDENT_ADDITIONAL_INFORMATION.UNIVERSITY, entity.getUniversity())
+                    .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_COUNTRY, entity.getStudentCountry())
                     .set(STUDENT_ADDITIONAL_INFORMATION.USER_EMAIL, entity.getUserEmail())
-                    .set(STUDENT_ADDITIONAL_INFORMATION.GRADUATION_YEAR, entity.getGraduationYear())
+                    .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_SCHOOL_LEVEL, entity.getStudentSchoolLevel())
                     .set(STUDENT_ADDITIONAL_INFORMATION.PORTFOLIO_URL, entity.getPortfolioUrl())
                     .set(STUDENT_ADDITIONAL_INFORMATION.GITHUB_URL, entity.getGithubUrl())
                     .set(STUDENT_ADDITIONAL_INFORMATION.LINKEDIN_URL, entity.getLinkedinUrl())
-                    .set(STUDENT_ADDITIONAL_INFORMATION.PHONE, entity.getPhone())
+                    .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_SPECIFICATION, entity.getStudentSpecification())
+                    .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_CV, entity.getStudentCv())
+                    .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_WANT_TO_RECEIVE_NOTIFICATION, entity.getStudentWantToReceiveNotification())
                     .set(STUDENT_ADDITIONAL_INFORMATION.ADDRESS, entity.getAddress())
-                    .set(STUDENT_ADDITIONAL_INFORMATION.BIO, entity.getBio())
-                    .set(STUDENT_ADDITIONAL_INFORMATION.AVAILABILITY_DATE , entity.getAvailabilityDate())
+
                     .returning()
                     .fetchOne();
 
             return record.into(StudentAdditionalInformationEntity.class);
         } else {
             dsl.update(STUDENT_ADDITIONAL_INFORMATION)
-                    .set(STUDENT_ADDITIONAL_INFORMATION.UNIVERSITY, entity.getUniversity())
+                    .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_COUNTRY, entity.getStudentCountry())
                     .set(STUDENT_ADDITIONAL_INFORMATION.USER_EMAIL, entity.getUserEmail())
-                    .set(STUDENT_ADDITIONAL_INFORMATION.GRADUATION_YEAR, entity.getGraduationYear())
+                    .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_SCHOOL_LEVEL, entity.getStudentSchoolLevel())
                     .set(STUDENT_ADDITIONAL_INFORMATION.PORTFOLIO_URL, entity.getPortfolioUrl())
                     .set(STUDENT_ADDITIONAL_INFORMATION.GITHUB_URL, entity.getGithubUrl())
                     .set(STUDENT_ADDITIONAL_INFORMATION.LINKEDIN_URL, entity.getLinkedinUrl())
-                    .set(STUDENT_ADDITIONAL_INFORMATION.PHONE, entity.getPhone())
+                    .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_SPECIFICATION, entity.getStudentSpecification())
+                    .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_CV, entity.getStudentCv())
+                    .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_WANT_TO_RECEIVE_NOTIFICATION, entity.getStudentWantToReceiveNotification())
                     .set(STUDENT_ADDITIONAL_INFORMATION.ADDRESS, entity.getAddress())
-                    .set(STUDENT_ADDITIONAL_INFORMATION.BIO, entity.getBio())
-                    .set(STUDENT_ADDITIONAL_INFORMATION.AVAILABILITY_DATE , entity.getAvailabilityDate())
                     .where(STUDENT_ADDITIONAL_INFORMATION.USER_EMAIL.eq(entity.getUserEmail()))
                     .execute();
 

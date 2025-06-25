@@ -22,6 +22,7 @@ public class CandidacyModel {
     private CandidacyStatus status;
     private String coverLetter;
     private UUID resumeFileId;
+    @Builder.Default
     private Integer[] additionalDocuments = new Integer[]{};
     private String motivation;
     private Integer expectedSalary;
