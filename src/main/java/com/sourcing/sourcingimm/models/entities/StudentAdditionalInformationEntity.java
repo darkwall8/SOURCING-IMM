@@ -25,8 +25,6 @@ public class StudentAdditionalInformationEntity {
     private String portfolioUrl;
     private String githubUrl;
     private String linkedinUrl;
-    private String address;
-    private LocalDate availabilityDate;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 }
