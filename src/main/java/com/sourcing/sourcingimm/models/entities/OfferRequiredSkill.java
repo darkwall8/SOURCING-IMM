@@ -7,22 +7,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class OfferRequiredSkill {
-    private Integer id;
-    private Integer offerId;
-    private Integer skillId;
-    private AcademicSkillLevel requiredLevel;
 
-    @Builder.Default
-    private boolean isMandatory = true;
-
-    @Builder.Default
-    private Integer weight = 1;
-
+    private UUID id;
+    private UUID skillId;
+    private UUID offerId;
     private Timestamp createdAt;
 }

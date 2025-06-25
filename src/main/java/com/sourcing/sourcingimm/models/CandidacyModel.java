@@ -21,18 +21,4 @@ public class CandidacyModel {
     private UUID offerId;
     private CandidacyStatus status;
     private String coverLetter;
-    private UUID resumeFileId;
-    @Builder.Default
-    private Integer[] additionalDocuments = new Integer[]{};
-    private String motivation;
-    private Integer expectedSalary;
-    private Date availabilityDate;
-    private String notes;
-    private Integer score;
-    private Timestamp appliedAt;
-    private Timestamp reviewedAt;
-    private String reviewedByEmail;
-    private Timestamp responseDate;
-
-
 }
