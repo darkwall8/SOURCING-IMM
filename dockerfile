@@ -2,24 +2,22 @@ FROM gradle:8-jdk17 AS build
 
 WORKDIR /app
 
-# Copie des fichiers de configuration gradle pour le cache
-COPY gradlew .
-COPY gradle gradle
-COPY build.gradle .
-COPY settings.gradle .
-COPY gradle.properties* ./
+# Copier les fichiers de configuration Gradle
+COPY build.gradle settings.gradle gradle.properties* ./
+COPY gradle/ gradle/
+COPY gradlew ./
 
 # Rendre le wrapper exécutable
 RUN chmod +x gradlew
 
-# Précharger les dépendances (facultatif mais utile)
-RUN ./gradlew dependencies --no-daemon || return 0
+# Télécharger les dépendances (cache)
+RUN ./gradlew dependencies --no-daemon
 
 # Copier le code source
-COPY src ./src
+COPY src/ src/
 
-# Construire le jar avec les classes JOOQ déjà générées
-RUN ./gradlew clean bootJar -x test --no-daemon
+# Construire l'application
+RUN ./gradlew clean build -x test --no-daemon
 
 # ===== RUNTIME STAGE =====
 FROM openjdk:17-slim AS runtime
