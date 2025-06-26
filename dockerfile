@@ -10,14 +10,17 @@ COPY gradlew ./
 # Rendre le wrapper exécutable
 RUN chmod +x gradlew
 
-# Télécharger les dépendances (cache)
-RUN ./gradlew dependencies --no-daemon
+# Test de base pour vérifier Gradle
+RUN ./gradlew --version
+
+# Télécharger les dépendances avec logs
+RUN ./gradlew dependencies --info --no-daemon
 
 # Copier le code source
 COPY src/ src/
 
-# Construire l'application
-RUN ./gradlew clean build -x test --no-daemon
+# Build en excluant Flyway et JOOQ (déjà fait en local)
+RUN ./gradlew clean build -x test -x flywayMigrate -x generateJooq --no-daemon
 
 # ===== RUNTIME STAGE =====
 FROM openjdk:17-slim AS runtime
@@ -27,8 +30,5 @@ WORKDIR /app
 # Copier le JAR depuis l'étape de build
 COPY --from=build /app/build/libs/*.jar app.jar
 
-# Exposer le port
 EXPOSE 8080
-
-# Point d'entrée pour lancer l'application
 ENTRYPOINT ["java", "-jar", "app.jar"]
