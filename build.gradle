@@ -67,10 +67,15 @@ tasks.named('flywayInfo').configure {
 tasks.named('flywayBaseline').configure {
     dependsOn tasks.named('processResources')
 }
+// Dans votre build.gradle
+//if (project.hasProperty('skipMigrations')) {
+//    flywayMigrate.enabled = false
+//    generateJooq.enabled = false
+//}
 
 flyway {
-    url = 'jdbc:postgresql://localhost:5432/sourcing'
-    user = 'FTD'
+    url = 'jdbc:postgresql://sourcing-db-production.up.railway.app'
+    user = 'ftd'
     password = 'FTD_DEV237'
     schemas = ['public', 'user_management', 'academic', 'recruitment', 'system']
     locations = ['classpath:db/migration']

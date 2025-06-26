@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  sourcing-imm-app:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: sourcing-imm
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      # Remplacez 'postgres' par l'adresse IP ou le nom du conteneur PostgreSQL
+      SPRING_DATASOURCE_URL: jdbc:postgresql://sourcing-db-production.up.railway.app
+      SPRING_DATASOURCE_USERNAME: FTD
+      SPRING_DATASOURCE_PASSWORD: FTD_DEV237
+      SPRING_FLYWAY_ENABLED: false
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
