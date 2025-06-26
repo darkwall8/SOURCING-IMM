@@ -16,11 +16,7 @@ import java.util.List;
 )
 public interface UserMappers {
 
-    @Mapping(target = "profileName", source = "profile.name")
-    @Mapping(target = "roleName", source = "role.name")
-    UserModel entityToModel(UserEntity entity);
-
-    @Mapping(target = "profile", ignore = true)
+    // Conversion UserModel -> UserEntity
     @Mapping(target = "role", ignore = true)
     @Mapping(target = "studentInfo", ignore = true)
     @Mapping(target = "companyInfo", ignore = true)
@@ -29,9 +25,14 @@ public interface UserMappers {
     @Mapping(target = "lastLogin", ignore = true)
     UserEntity modelToEntity(UserModel model);
 
+    // Conversion UserEntity -> UserModel (MÉTHODE MANQUANTE)
+    @Mapping(target = "profile", source = "profile")
+    UserModel entityToModel(UserEntity entity);
+
+    // Conversion List<UserEntity> -> List<UserModel>
     List<UserModel> entitiesToModels(List<UserEntity> entities);
 
-    @Mapping(target = "profile", ignore = true)
+    // Mise à jour d'une entité à partir d'un modèle
     @Mapping(target = "role", ignore = true)
     @Mapping(target = "studentInfo", ignore = true)
     @Mapping(target = "companyInfo", ignore = true)

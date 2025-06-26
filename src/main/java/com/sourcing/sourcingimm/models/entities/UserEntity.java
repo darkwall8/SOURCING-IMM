@@ -14,15 +14,14 @@ import java.util.UUID;
 public class UserEntity {
         private String name;
         private String email;
-        private UUID profileId;
         private UUID roleId;
         private Boolean hasPremium;
         private Boolean isActivated;
         private LocalDateTime lastLogin;
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
+        private String profile;
 
-        private ProfileEntity profile;
         private RoleEntity role;
         private StudentAdditionalInformationEntity studentInfo;
         private CompanyAdditionalInformationEntity companyInfo;

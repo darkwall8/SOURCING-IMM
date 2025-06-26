@@ -23,6 +23,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/")
@@ -133,10 +134,10 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
-    @GetMapping("/role/{roleName}")
+    @GetMapping("/role/{roleId}")
     @Operation(summary = "Get user by role")
-    public ResponseEntity<List<UserModel>> getUsersByRole(@PathVariable String roleName) {
-        List<UserModel> users = userService.getUsersByRole(roleName);
+    public ResponseEntity<List<UserModel>> getUsersByRole(@PathVariable UUID roleId) {
+        List<UserModel> users = userService.getUsersByRole(roleId);
         return ResponseEntity.ok(users);
     }
 }

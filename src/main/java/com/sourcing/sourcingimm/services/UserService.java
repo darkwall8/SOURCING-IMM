@@ -7,11 +7,11 @@ import com.sourcing.sourcingimm.models.mappers.UserMappers;
 import com.sourcing.sourcingimm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -65,8 +65,8 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public List<UserModel> getUsersByRole(String roleName) {
-        List<UserEntity> entities = userRepository.findByRoleId(roleName);
+    public List<UserModel> getUsersByRole(UUID roleId) {
+        List<UserEntity> entities = userRepository.findByRoleId(roleId);
         return userMappers.entitiesToModels(entities);
     }
 }

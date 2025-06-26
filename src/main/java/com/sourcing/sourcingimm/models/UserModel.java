@@ -27,11 +27,10 @@ public class UserModel {
     private String email;
 
 
-    private UUID profileId;
-    private String profileName;
+    private String profile;
 
     private UUID roleId;
-    private String roleName;
+
 
     private Boolean hasPremium;
     private Boolean isActivated;

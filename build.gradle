@@ -72,7 +72,7 @@ flyway {
     url = 'jdbc:postgresql://localhost:5432/sourcing'
     user = 'FTD'
     password = 'FTD_DEV237'
-    schemas = ['public']
+    schemas = ['public', 'user_management', 'academic', 'recruitment', 'system']
     locations = ['classpath:db/migration']
     cleanDisabled = false
     baselineOnMigrate = true

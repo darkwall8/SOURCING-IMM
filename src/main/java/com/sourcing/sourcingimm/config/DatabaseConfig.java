@@ -2,6 +2,7 @@ package com.sourcing.sourcingimm.config;
 
 import lombok.Data;
 import org.jooq.DSLContext;
+import org.jooq.SQLDialect;
 import org.jooq.conf.RenderNameCase;
 import org.jooq.conf.RenderQuotedNames;
 import org.jooq.conf.Settings;
@@ -26,7 +27,7 @@ public class DatabaseConfig {
         return new Settings()
                 .withRenderQuotedNames(RenderQuotedNames.EXPLICIT_DEFAULT_QUOTED)
                 .withRenderNameCase(RenderNameCase.AS_IS)
-                .withRenderSchema(false)
+                .withRenderSchema(true)  // Changed to true to include schema names
                 .withExecuteLogging(true)
                 .withQueryTimeout(30)
                 .withFetchSize(1000);
@@ -36,13 +37,14 @@ public class DatabaseConfig {
     public DefaultConfiguration jooqConfiguration(DataSource dataSource, Settings jooqSettings) {
         DefaultConfiguration configuration = new DefaultConfiguration();
         configuration.set(new TransactionAwareDataSourceProxy(dataSource));
+        configuration.set(SQLDialect.POSTGRES);  // Add SQL dialect
         configuration.set(jooqSettings);
         return configuration;
     }
 
     @Bean
-    public DSLContext jooqDSLContext(DefaultConfiguration configuration) {
-        return DSL.using(configuration);
+    public DSLContext dslContext(DefaultConfiguration jooqConfiguration) {
+        return DSL.using(jooqConfiguration);
     }
 
     @Data
