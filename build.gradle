@@ -75,11 +75,11 @@ flyway {
     schemas = ['public', 'user_management', 'academic', 'recruitment', 'system']
     locations = ['classpath:db/migration']
     cleanDisabled = false
-    baselineOnMigrate = true
+    baselineOnMigrate = false
     baselineVersion = 1
 
     mixed = false
-    validateOnMigrate = true
+    validateOnMigrate = false
     outOfOrder = false
 
     defaultSchema = 'public'

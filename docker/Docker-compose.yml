@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  postgres:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    container_name: sourcing
+    environment:
+      POSTGRES_USER: FTD
+      POSTGRES_PASSWORD: FTD_DEV237
+      POSTGRES_DB: sourcing
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - sourcing-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sourcing_user -d sourcing_imm_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  sourcing-imm-app:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    container_name: sourcing-imm
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/sourcing
+      SPRING_DATASOURCE_USERNAME: FTD
+      SPRING_DATASOURCE_PASSWORD: FTD_DEV237
+      SPRING_FLYWAY_ENABLED: false
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - sourcing-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  sourcing-network:
+    driver: bridge

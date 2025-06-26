@@ -1,36 +1,33 @@
-FROM eclipse-temurin:17-jdk-alpine AS builder
+FROM gradle:8.5-jdk17 AS build
 
 WORKDIR /app
 
-# Install curl for network debugging (optional)
-RUN apk add --no-cache curl
+# Copier les fichiers de configuration Gradle
+COPY build.gradle .
+COPY settings.gradle .
+COPY gradle.properties* ./
+COPY src ./src
 
-# Copy gradle wrapper and build files
-COPY build.gradle settings.gradle gradlew ./
-COPY gradle gradle
+# Construire l'application
+RUN gradle clean build -x test
 
-# Make gradlew executable
-RUN chmod +x gradlew
+# Étape 2: Image de runtime
+FROM openjdk:17-jre-slim
 
-# Download dependencies first (better caching)
-RUN ./gradlew dependencies --no-daemon --refresh-dependencies || true
+WORKDIR /app
 
-COPY . .
-
-# Build with Flyway disabled - migrations should run separately
-RUN ./gradlew clean bootJar --no-daemon -x test -x flywayMigrate -Dspring.flyway.enabled=false
-
-# Use Eclipse Temurin (recommended replacement for OpenJDK)
-FROM eclipse-temurin:17-jre-alpine AS runtime
-
+# Créer un utilisateur non-root pour la sécurité
 RUN addgroup --system spring && adduser --system spring --ingroup spring
-
-COPY --from=builder --chown=spring:spring /app/build/libs/*.jar app.jar
-
 USER spring:spring
 
+# Copier le JAR depuis l'étape de build
+COPY --from=build /app/build/libs/*.jar app.jar
+
+# Exposer le port de l'application
 EXPOSE 8080
 
-ENV SPRING_PROFILES_ACTIVE=prod
+# Variables d'environnement par défaut
+ENV SPRING_PROFILES_ACTIVE=docker
 
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+# Point d'entrée
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
