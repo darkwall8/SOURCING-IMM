@@ -74,7 +74,7 @@ tasks.named('flywayBaseline').configure {
 //}
 
 flyway {
-    url = 'jdbc:postgresql://sourcing-db-production.up.railway.app'
+    url = 'jdbc:postgresql://sourcing-db-production.up.railway.app:5432/sourcing'
     user = 'ftd'
     password = 'FTD_DEV237'
     schemas = ['public', 'user_management', 'academic', 'recruitment', 'system']

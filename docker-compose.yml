@@ -9,7 +9,7 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: docker
       # Remplacez 'postgres' par l'adresse IP ou le nom du conteneur PostgreSQL
-      SPRING_DATASOURCE_URL: jdbc:postgresql://sourcing-db-production.up.railway.app
+      SPRING_DATASOURCE_URL: jdbc:postgresql://sourcing-db-production.up.railway.app:5432/sourcing
       SPRING_DATASOURCE_USERNAME: FTD
       SPRING_DATASOURCE_PASSWORD: FTD_DEV237
       SPRING_FLYWAY_ENABLED: false
