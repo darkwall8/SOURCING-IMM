@@ -74,9 +74,9 @@ tasks.named('flywayBaseline').configure {
 //}
 
 flyway {
-    url = 'jdbc:postgresql://sourcing-db-production.up.railway.app:5432/sourcing'
-    user = 'ftd'
-    password = 'FTD_DEV237'
+    url = 'postgresql://j@postgres.railway.internal:5432/railway'
+    user = 'postgres'
+    password = 'LsyZJtFwolJIqBOXBHXNCNyQZfmxffl'
     schemas = ['public', 'user_management', 'academic', 'recruitment', 'system']
     locations = ['classpath:db/migration']
     cleanDisabled = false
