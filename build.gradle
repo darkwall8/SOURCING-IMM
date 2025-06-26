@@ -74,7 +74,7 @@ tasks.named('flywayBaseline').configure {
 //}
 
 flyway {
-    url = 'postgresql://@postgres.railway.internal:5432/railway'
+    url = 'postgresql://postgres.railway.internal:5432/railway'
     user = 'postgres'
     password = 'LsyZJtFwolJIqBOXBHXNCNyQZfmxffl'
     schemas = ['public', 'user_management', 'academic', 'recruitment', 'system']
