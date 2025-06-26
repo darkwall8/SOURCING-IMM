@@ -36,7 +36,6 @@ public class StudentAdditionalInfoRepository {
                     .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_SPECIFICATION, entity.getStudentSpecification())
                     .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_CV, entity.getStudentCv())
                     .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_WANT_TO_RECEIVE_NOTIFICATION, entity.getStudentWantToReceiveNotification())
-                    .set(STUDENT_ADDITIONAL_INFORMATION.ADDRESS, entity.getAddress())
 
                     .returning()
                     .fetchOne();
@@ -53,7 +52,6 @@ public class StudentAdditionalInfoRepository {
                     .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_SPECIFICATION, entity.getStudentSpecification())
                     .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_CV, entity.getStudentCv())
                     .set(STUDENT_ADDITIONAL_INFORMATION.STUDENT_WANT_TO_RECEIVE_NOTIFICATION, entity.getStudentWantToReceiveNotification())
-                    .set(STUDENT_ADDITIONAL_INFORMATION.ADDRESS, entity.getAddress())
                     .where(STUDENT_ADDITIONAL_INFORMATION.USER_EMAIL.eq(entity.getUserEmail()))
                     .execute();
 

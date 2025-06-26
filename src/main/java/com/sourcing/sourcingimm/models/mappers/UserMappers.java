@@ -26,6 +26,7 @@ public interface UserMappers {
     @Mapping(target = "companyInfo", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "lastLogin", ignore = true)
     UserEntity modelToEntity(UserModel model);
 
     List<UserModel> entitiesToModels(List<UserEntity> entities);
@@ -36,5 +37,6 @@ public interface UserMappers {
     @Mapping(target = "companyInfo", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "lastLogin", ignore = true)
     void updateEntityFromModel(UserModel model, @MappingTarget UserEntity entity);
 }

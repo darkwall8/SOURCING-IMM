@@ -35,9 +35,6 @@ public class UserModel {
 
     private Boolean hasPremium;
     private Boolean isActivated;
-    private LocalDateTime lastLogin;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 
 
 }

@@ -24,6 +24,4 @@ public class StudentAdditionalInfoModel {
     private String portfolioUrl;
     private String githubUrl;
     private String linkedinUrl;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
 }

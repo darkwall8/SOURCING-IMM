@@ -23,9 +23,6 @@ public class UserService {
     @Autowired
     private UserMappers userMappers;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
 
     @Transactional(readOnly = true)
     public List<UserModel> getAllUsers() {
