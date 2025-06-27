@@ -31,12 +31,6 @@ public class UserService {
         return userMappers.entitiesToModels(entities);
     }
 
-    @Transactional(readOnly = true)
-    public List<UserModel> getAllCompany(UUID id) {
-        List<UserEntity> companies = userRepository.getAllCompany(id);
-        return userMappers.entitiesToModels(companies);
-    }
-
 
     @Transactional(readOnly = true)
     public UserModel getUserByEmail(String email) {
