@@ -121,11 +121,6 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    @GetMapping("/all/company")
-    @Operation(summary = "List company")
-    public ResponseEntity<List<UserModel>> getAllCompany() {
-        List<UserModel> users = userService.getAllUsers();
-    }
 
     @GetMapping("/email/{email}")
     @Operation(summary = "Get a user by email")
@@ -158,6 +153,5 @@ public class UserController {
     public ResponseEntity<List<ActivitySectorModel>> getAllActivitySectors() {
         List<ActivitySectorModel> sector = information.findAllActivitySectors();
         return ResponseEntity.ok(sector);
-
     }
 }

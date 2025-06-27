@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class ProfileStudentService {
 
-    @Autowired
     private StudentAdditionalInfoMapper mapper;
 
     @Autowired
