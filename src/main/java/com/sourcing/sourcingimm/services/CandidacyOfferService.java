@@ -22,7 +22,7 @@ public class CandidacyOfferService {
     @Autowired
     private CandidatureOfferRepository repository;
 
-    @Autowired
+
     private CandidatureOfferMapper mapper;
 
     @Transactional(readOnly = true)
