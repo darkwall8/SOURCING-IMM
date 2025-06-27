@@ -1,8 +1,12 @@
 package com.sourcing.sourcingimm.controller;
 
 
+import com.sourcing.sourcingimm.models.ActivitySectorModel;
 import com.sourcing.sourcingimm.models.DTOs.StudentUserCreationRequest;
 import com.sourcing.sourcingimm.models.DTOs.StudentUserCreationResponse;
+import com.sourcing.sourcingimm.models.entities.ActivitySectorEntity;
+import com.sourcing.sourcingimm.repository.ActivitySectorRepository;
+import com.sourcing.sourcingimm.services.MoreInformationManagementService;
 import com.sourcing.sourcingimm.utils.exception.DuplicateResourceException;
 import com.sourcing.sourcingimm.utils.exception.UserCreationException;
 import com.sourcing.sourcingimm.utils.exception.ValidationException;
@@ -33,6 +37,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MoreInformationManagementService information;
 
     @Autowired
     private UserCreateCompleteService userCreate;
@@ -107,12 +114,17 @@ public class UserController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/all/users")
     @Operation(summary = "List users")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<UserModel>> getAllUsers() {
         List<UserModel> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/all/company")
+    @Operation(summary = "List company")
+    public ResponseEntity<List<UserModel>> getAllCompany() {
+        List<UserModel> users = userService.getAllUsers();
     }
 
     @GetMapping("/email/{email}")
@@ -139,5 +151,13 @@ public class UserController {
     public ResponseEntity<List<UserModel>> getUsersByRole(@PathVariable UUID roleId) {
         List<UserModel> users = userService.getUsersByRole(roleId);
         return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/sector/all")
+    @Operation(summary = "Get All activity sector")
+    public ResponseEntity<List<ActivitySectorModel>> getAllActivitySectors() {
+        List<ActivitySectorModel> sector = information.findAllActivitySectors();
+        return ResponseEntity.ok(sector);
+
     }
 }

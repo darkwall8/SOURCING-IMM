@@ -1,5 +1,6 @@
 package com.sourcing.sourcingimm.services;
 
+import com.sourcing.sourcingimm.generated.user_management.tables.User;
 import com.sourcing.sourcingimm.utils.exception.DuplicateResourceException;
 import com.sourcing.sourcingimm.models.UserModel;
 import com.sourcing.sourcingimm.models.entities.UserEntity;
@@ -29,6 +30,13 @@ public class UserService {
         List<UserEntity> entities = userRepository.findAll();
         return userMappers.entitiesToModels(entities);
     }
+
+    @Transactional(readOnly = true)
+    public List<UserModel> getAllCompany(UUID id) {
+        List<UserEntity> companies = userRepository.getAllCompany(id);
+        return userMappers.entitiesToModels(companies);
+    }
+
 
     @Transactional(readOnly = true)
     public UserModel getUserByEmail(String email) {

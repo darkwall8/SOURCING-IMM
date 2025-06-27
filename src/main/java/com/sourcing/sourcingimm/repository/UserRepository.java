@@ -94,15 +94,9 @@ public class UserRepository {
                         USER.PROFILE,
                         USER.ROLE_ID,
                         USER.HAS_PREMIUM,
-                        USER.IS_ACTIVATED,
-                        USER.LAST_LOGIN,
-                        USER.CREATED_AT,
-                        USER.UPDATED_AT,
-                        PROFILE.NAME.as("profile_name"),
-                        ROLE.NAME.as("role_name")
+                        USER.IS_ACTIVATED
                 )
                 .from(USER)
-                .leftJoin(ROLE).on(USER.ROLE_ID.eq(ROLE.ID))
                 .where(USER.ROLE_ID.eq(roleId))
                 .fetchInto(UserEntity.class);
     }
@@ -134,6 +128,7 @@ public class UserRepository {
                         .where(USER.EMAIL.eq(email))
         );
     }
+
 
 
 }

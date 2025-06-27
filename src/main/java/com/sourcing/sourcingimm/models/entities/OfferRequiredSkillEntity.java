@@ -1,6 +1,5 @@
 package com.sourcing.sourcingimm.models.entities;
 
-import com.sourcing.sourcingimm.utils.enumerations.AcademicSkillLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OfferRequiredSkill {
+public class OfferRequiredSkillEntity {
 
     private UUID id;
     private UUID skillId;
