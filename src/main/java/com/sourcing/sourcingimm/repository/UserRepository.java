@@ -30,9 +30,7 @@ public class UserRepository {
                         USER.IS_ACTIVATED,
                         USER.LAST_LOGIN,
                         USER.CREATED_AT,
-                        USER.UPDATED_AT,
-                        PROFILE.NAME.as("profile_name"),
-                        ROLE.NAME.as("role_name")
+                        USER.UPDATED_AT
                 )
                 .from(USER)
                 .leftJoin(ROLE).on(USER.ROLE_ID.eq(ROLE.ID))
@@ -49,9 +47,7 @@ public class UserRepository {
                         USER.IS_ACTIVATED,
                         USER.LAST_LOGIN,
                         USER.CREATED_AT,
-                        USER.UPDATED_AT,
-                        PROFILE.NAME.as("profile_name"),
-                        ROLE.NAME.as("role_name")
+                        USER.UPDATED_AT
                 )
                 .from(USER)
                 .leftJoin(ROLE).on(USER.ROLE_ID.eq(ROLE.ID))
