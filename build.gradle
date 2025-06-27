@@ -74,13 +74,13 @@ tasks.named('flywayBaseline').configure {
 //}
 
 flyway {
-    url = 'postgresql://postgres.railway.internal:5432/railway'
+    url = 'jdbc:postgresql://yamabiko.proxy.rlwy.net:18377/railway'
     user = 'postgres'
-    password = 'LsyZJtFwolJIqBOXBHXNCNyQZfmxffl'
+    password = 'LsyZJtFwolJIqBOXBHXNCNyQZfmxfflj'
     schemas = ['public', 'user_management', 'academic', 'recruitment', 'system']
     locations = ['classpath:db/migration']
     cleanDisabled = false
-    baselineOnMigrate = false
+    baselineOnMigrate = true
     baselineVersion = 1
 
     mixed = false
