@@ -90,8 +90,6 @@
 
 package com.sourcing.sourcingimm.config;
 
-import com.sourcing.sourcingimm.config.Gateway.GatewayAuthenticationEntryPoint;
-import com.sourcing.sourcingimm.config.Gateway.GatewayRequestFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -107,7 +105,6 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
