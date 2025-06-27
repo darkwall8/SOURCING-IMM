@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class ProfileEnterpriseService {
 
-    @Autowired
+
     private CompanyAdditionalInfoMapper mapper;
 
     @Autowired
