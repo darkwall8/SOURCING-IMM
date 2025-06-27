@@ -111,9 +111,9 @@ jooq {
 
                 jdbc {
                     driver = 'org.postgresql.Driver'
-                    url = 'jdbc:postgresql://localhost:5432/sourcing'
-                    user = 'FTD'
-                    password = 'FTD_DEV237'
+                    url = 'jdbc:postgresql://yamabiko.proxy.rlwy.net:18377/railway'
+                    user = 'postgres'
+                    password = 'LsyZJtFwolJIqBOXBHXNCNyQZfmxfflj'
                 }
 
                 generator {
